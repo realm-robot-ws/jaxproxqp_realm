@@ -1,5 +1,5 @@
 import jax.numpy as jnp
-from attrs import define
+# from attrs import define
 from loguru import logger
 
 from jaxproxqp.utils.jax_types import FloatScalar
@@ -7,7 +7,6 @@ from jaxproxqp.utils.jax_types import FloatScalar
 _HAS_LOGGED = False
 
 
-@define
 class Settings:
     alpha_bcl: float = 0.1
     beta_bcl: float = 0.9
