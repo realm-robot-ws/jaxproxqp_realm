@@ -6,12 +6,12 @@ from jaxtyping import Array, Bool, Float, Int
 
 Arr = Union[np.ndarray, Array]
 
-AnyFloat = Float[Arr, "*"]
-Shape = tuple[int, ...]
+AnyFloat = Float
+Shape = tuple
 
-FloatScalar = float | Float[Arr, ""]
-IntScalar = int | Int[Arr, ""]
-BoolScalar = bool | Bool[Arr, ""]
+FloatScalar = float
+IntScalar = int 
+BoolScalar = bool
 
 
 def get_default_float_dtype():
