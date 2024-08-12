@@ -581,7 +581,7 @@ class JaxProxQP:
             jd.print("good_step: {}", is_good_step, ordered=True)
         return sol_new, bcl_coeffs_new
 
-    def global_primal_residual(self, sol: Solution) -> tuple[PriRes, PriResWork]:
+    def global_primal_residual(self, sol: Solution) -> tuple:
         ruiz = self._ruiz
 
         # qpresults.se
@@ -719,7 +719,7 @@ class JaxProxQP:
     def primal_dual_newton_semi_smooth(
         self, res: Resids, sol: Solution, sol_prev: Solution, mults: Multipliers, eps_int: FloatScalar
     ):
-        CarryType = tuple[int, Resids, Solution, FloatScalar, FloatScalar]
+        CarryType = tuple
 
         def cond(carry: CarryType) -> BoolScalar:
             ii, res_, sol_, err_in, step_size = carry
@@ -841,13 +841,13 @@ class JaxProxQP:
 
         # Find first alpha that satisfies all conditions.
         # State: (alpha_last_neg, last_neg_grad, alpha_first_pos, alpha_pos_grad)
-        def cond_fun(state: tuple[int, LineSearchAlphaCarry]) -> BoolScalar:
+        def cond_fun(state: tuple) -> BoolScalar:
             # Keep going if we have not found a positive alpha.
             i, (alpha_last_neg_, last_neg_grad_, alpha_first_pos_, alpha_pos_grad_) = state
             should_continue = jnp.isinf(alpha_first_pos_)
             return should_continue
 
-        def body_fun(state: tuple[int, LineSearchAlphaCarry]):
+        def body_fun(state: tuple):
             i, (alpha_last_neg_, last_neg_grad_, alpha_first_pos_, first_pos_grad_) = state
             alpha = a_alphas_sorted[i]
             gpdal_res = gpdal_derivative_results(alpha)
@@ -1010,7 +1010,7 @@ class JaxProxQP:
 
     def iterative_solve_with_permut_fact(
         self, rhs: WVec, active_ineqs: IXBool, mults: Multipliers, eps: FloatScalar
-    ) -> tuple[WVec, ResWorkStep]:
+    ) -> tuple:
         dw_aug, lu_factors = self.solve_linear_system(rhs, active_ineqs, mults)
 
         # TODO: Do we need to compute residuals in flaot64?
