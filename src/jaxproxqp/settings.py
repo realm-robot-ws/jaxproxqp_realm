@@ -30,7 +30,7 @@ class Settings:
 
     pri_res_thresh_abs: float = 1e-5
     dua_res_thresh_abs: float = 1e-5
-    dua_gap_thresh_abs: float | None = 1e-5
+    dua_gap_thresh_abs: float = 1e-5
 
     # Threshold for early exit from inner loop for a step size that is too small.
     step_size_thresh: float = 1e-8
