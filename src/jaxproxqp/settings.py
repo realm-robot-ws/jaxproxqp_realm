@@ -1,13 +1,13 @@
 import jax.numpy as jnp
 # from attrs import define
 from loguru import logger
-
+from typing import NamedTuple
 from jaxproxqp.utils.jax_types import FloatScalar
 
 _HAS_LOGGED = False
 
 
-class Settings:
+class Settings(NamedTuple):
     alpha_bcl: float = 0.1
     beta_bcl: float = 0.9
 
